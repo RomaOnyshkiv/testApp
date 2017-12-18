@@ -14,11 +14,10 @@ public class ToFile extends PreferMessage implements Print {
     @Override
     public void print(String msg) {
 
-        String out = preferMessage(msg);
         try {
             FileWriter fw = new FileWriter(file, true);
             PrintWriter writer = new PrintWriter(fw);
-            writer.println(out);
+            writer.println(preferMessage(msg));
             writer.close();
 
         } catch (Exception e) {
