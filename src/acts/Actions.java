@@ -5,41 +5,38 @@ import helper.PreferMessage;
 import impl.ToConsole;
 import impl.ToFile;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Actions {
 
     private PreferMessage preferMessage = new PreferMessage();
     private ToFile toFile = new ToFile();
     private ToConsole toConsole = new ToConsole();
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private String in, chose;
+    private Scanner reader = new Scanner(System.in);
 
-    public void actions() throws IOException{
+    public void actions(){
 
         System.out.println("Type text");
-        in = reader.readLine();
+        String message = reader.next();
 
         while (true) {
             System.out.println("Type 1 - to print in file, or 2 - to print to console");
-            chose = reader.readLine();
+            int chose = reader.nextInt();
             switch (chose) {
-                case "1":
-                    toFile.print(preferMessage.preferMessage(in));
+                case 1:
+                    toFile.print(preferMessage.preferMessage(message));
                     break;
-                case "2" :
-                    toConsole.print(preferMessage.preferMessage(in));
+                case 2 :
+                    toConsole.print(preferMessage.preferMessage(message));
                     break;
                 default:
                     System.out.println("Incorrect choice");
             }
 
             System.out.println("Type text, or 'Q' or 'EXIT' for exit");
-            in = reader.readLine();
+            message = reader.next();
 
-            if (in.equalsIgnoreCase("q") || in.equalsIgnoreCase("exit")){
+            if (message.equalsIgnoreCase("q") || message.equalsIgnoreCase("exit")){
                 System.exit(0);
             }
 
